@@ -2,18 +2,16 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const slice = createSlice({
   name: "contador",
-  initialState: {
-    total: 0,
-  },
+  initialState: 0,
   reducers: {
-    increment: (state) => {
-      state.total += 1;
-    },
-    decrement: (state) => {
-      state.total -= 1;
+    increment: (state) => state + 1,
+    decrement: (state) => state - 1,
+    sum: {
+      reducer: (state, action) => state + action.payload,
+      prepare: (payload) => ({ payload, meta: "local" }),
     },
   },
 });
 
-export const { increment, decrement } = slice.actions;
+export const { increment, decrement, sum } = slice.actions;
 export default slice.reducer;
