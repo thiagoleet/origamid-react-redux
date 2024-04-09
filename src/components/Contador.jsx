@@ -9,7 +9,7 @@ const Contador = () => {
     <div className="field is-grouped">
       <div className="control mx-auto pt-6">
         <button onClick={() => dispatch(sum(5))} className="button is-info">
-          Submit
+          Valor: {contador}
         </button>
       </div>
     </div>

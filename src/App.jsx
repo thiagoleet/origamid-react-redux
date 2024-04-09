@@ -1,38 +1,34 @@
 import React from "react";
 import "./App.css";
-import { useDispatch, useSelector } from "react-redux";
-import { login } from "./store/slices/login";
+import { useSelector } from "react-redux";
+
 import Login from "./components/Login";
-import Contador from "./components/Contador";
+import User from "./components/User";
+import Header from "./components/Header";
 
 function App() {
-  const [username, setUsername] = React.useState("dog");
-  const [password, setPassword] = React.useState("dog");
-  const dispatch = useDispatch();
   const { token, user } = useSelector((state) => state.login);
-
-  async function handleSubmit(event) {
-    event.preventDefault();
-    await dispatch(login({ username, password }));
-  }
 
   return (
     <div className="container">
-      <div className="grid">
-        <div className="cell py-2 px-2">
-          <Login
-            handleSubmit={handleSubmit}
-            password={password}
-            setPassword={setPassword}
-            setUsername={setUsername}
-            token={token}
-            user={user}
-            username={username}
-          />
-        </div>
-        <div className="cellpy-2 px-2">
-          <Contador />
-        </div>
+      <Header />
+      <div className="my-2">
+        <progress
+          className={`progress is-small is-primary ${
+            token.loading || user.loading ? "" : "is-invisible"
+          }`}
+          max="100"
+        ></progress>
+      </div>
+      <div
+        className={`my-4 ${
+          token?.data?.token !== undefined ? "is-hidden" : ""
+        }`}
+      >
+        <Login />
+      </div>
+      <div className="my-4">
+        <User />
       </div>
     </div>
   );
