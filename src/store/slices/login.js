@@ -1,6 +1,7 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import createAsyncSlice from "../util/createAsyncSlice";
 import getLocalStorage from "../util/getLocalStorage";
+import { removePhotos } from "./photos";
 
 const TOKEN_API_URL = "https://dogsapi.origamid.dev/json/jwt-auth/v1/token";
 const USER_API_URL = "https://dogsapi.origamid.dev/json/api/user";
@@ -96,6 +97,7 @@ export const autoLogin = () => async (dispatch, getState) => {
 export const userLogout = () => (dispatch) => {
   dispatch(removeUser());
   dispatch(removeToken());
+  dispatch(removePhotos());
   window.localStorage.removeItem("token");
 };
 

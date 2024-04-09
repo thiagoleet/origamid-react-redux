@@ -26,11 +26,6 @@ const Photo = ({ photo }) => {
               <p className="subtitle is-6">@{photo.author}</p>
             </div>
           </div>
-
-          <div className="content">
-            <p>Peso: {photo.peso}kg</p>
-            <p>Idade: {`${photo.idade} ${photo.idade > 1 ? "anos" : "ano"}`}</p>
-          </div>
         </div>
         <footer className="card-footer">
           <div className="card-footer-item">Acessos: {photo.acessos}</div>
